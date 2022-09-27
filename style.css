@@ -6,7 +6,7 @@
 }
 
 body{
-    background-color: rgb(47, 88, 124);
+    background-color: rgb(26, 93, 151);
 }
 
 .container{
@@ -22,15 +22,31 @@ body{
     border-radius: 10px;
     box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.575);
     margin: 1.15%;
-    background-color: aliceblue;
+    background-color: rgb(175, 218, 253);
     padding: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .container .paciente img{
     width: 25%;
 }
 
+.container .paciente .texto{
+    margin: 3%;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container .paciente .texto span{
+    display: block;
+    font-size: 1.3em;
+}
+
 .container .paciente1{
     width: 100%;
     margin: 3% 5.15% 0 5.15%;
+}
+
+.container .paciente1 .texto span{
+    font-size: 4em;
 }
