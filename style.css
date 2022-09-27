@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: rgb(47, 88, 124);
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.container .paciente{
+    width: 30vw;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.575);
+    margin: 1.15%;
+    background-color: aliceblue;
+    padding: 10px;
+}
+
+.container .paciente img{
+    width: 25%;
+}
+
+.container .paciente1{
+    width: 100%;
+    margin: 3% 5.15% 0 5.15%;
+}
