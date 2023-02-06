@@ -21,7 +21,7 @@
                 botao.onclick = e => {
                     let dados = item.children[2].innerText
                     // Envie os dados para o servidor local
-                    $.post("http://localhost:8080/collect-data", { data: dados }, function (response) {
+                    $.post("http://localhost:80/collect-data.php", { data: dados }, function (response) {
                         console.log("Dados coletados com sucesso: " + response);
                     })
                 }
