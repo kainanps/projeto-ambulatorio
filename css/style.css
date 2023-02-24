@@ -9,6 +9,20 @@ body{
     background-color: rgb(26, 93, 151);
 }
 
+body img.background{
+    position: fixed;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    opacity: .2;
+}
+
+body h1.bem-vindo{
+    font-size: 4em;
+    color: white;
+    text-shadow: 1px 1px 10px black;
+}
+
 .container{
     height: 100vh;
     display: flex;
@@ -18,11 +32,11 @@ body{
 }
 
 .container .paciente{
-    width: 30vw;
+    width: 45vw;
     border-radius: 10px;
     box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.575);
     margin: 1.15%;
-    background-color: rgb(175, 218, 253);
+    background-color: rgb(255, 255, 255);
     padding: 10px;
     display: flex;
     align-items: center;
@@ -30,6 +44,7 @@ body{
 
 .container .paciente img{
     width: 25%;
+    border-radius: 10px;
 }
 
 .container .paciente .texto{
@@ -39,14 +54,23 @@ body{
 
 .container .paciente .texto span{
     display: block;
-    font-size: 1.3em;
+    font-size: 2em;
 }
 
 .container .paciente1{
-    width: 100%;
-    margin: 3% 5.15% 0 5.15%;
+    width: 70vw;
+    margin: 0 5.15% 0 5.15%;
+    transition: linear .5s;
 }
 
 .container .paciente1 .texto span{
-    font-size: 4em;
+    font-size: 3.5em;
+}
+
+.container .pacienteAmplied{
+    position: absolute;
+    z-index: 1000;
+    width: 80vw;
+    box-shadow: 0px 0px 500px 1000px rgba(0, 0, 0, 0.575);
+    transition: linear .5s;
 }

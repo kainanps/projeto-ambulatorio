@@ -10,30 +10,62 @@
     function criarBotoes(){
         if(!document.querySelector('.botaoChamar') && document.getElementById('cdAgendamento:tblData2')){
             let linhas = document.querySelectorAll('.rich-table-row')
+            let areaPesquisa = document.querySelector('.areaPesquisa')
+            let buttonCallAll = document.createElement('input')
+            buttonCallAll.value = "Exportar Todos"
+            buttonCallAll.type = "button"
+            buttonCallAll.style = "color: #fff;border-radius: 5px;font-size: 1.6em; margin: 5px; padding: 5px 15px;  font-family: 'Arial', sans-serif;  font-weight: 500;  cursor: pointer;box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),   7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1); outline: none;background: rgb(96,9,240); border: none;"
+            buttonCallAll.onclick = e =>{
+                let pacienteObject = {}
+                linhas.forEach((item,key) => {
+                    pacienteObject['paciente'+key] = {
+                        paciente: item.children[2].innerText.toLowerCase(),
+                        especialidade: item.children[9].innerText.toLowerCase(),
+                        data: item.children[3].innerText,
+                        prontuario: item.children[1].innerText,
+                        chamadas: 0
+                    }
+                })
+                $.ajax({
+                    type: 'POST',
+                    url: "http://localhost:80/Projeto-ambulatorio/receiverAll.php",
+                    data: pacienteObject,
+                    success: function(response) {
+                        alert(response)
+                    }
+                });
+            }
+
+            areaPesquisa.insertBefore(buttonCallAll, areaPesquisa.childNodes[2])
+
             linhas.forEach(item => {
                 let celula = document.createElement('td')
-                let celula2 = document.createElement('td')
                 let botao = document.createElement('input')
-                let textConsultorio = document.createElement('input')
-                const myIframe = document.querySelector('iframe')
-
-                textConsultorio.placeholder = "Consultório"
-                botao.onclick = e => {
-                    let dados = item.children[2].innerText
-                    // Envie os dados para o servidor local
-                    $.post("http://localhost:80/collect-data.php", { data: dados }, function (response) {
-                        console.log("Dados coletados com sucesso: " + response);
-                    })
-                }
                 
+                botao.onclick = e => {
+                    let dados = {
+                                    paciente: item.children[2].innerText.toLowerCase(),
+                                    especialidade: item.children[9].innerText.toLowerCase(),
+                                    data: item.children[3].innerText,
+                                    prontuario: item.children[1].innerText,
+                                    chamadas: 0
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://localhost:80/Projeto-ambulatorio/receiver.php",
+                        data: dados,
+                        success: function(response) {
+                            alert(response)
+                        }
+                    });
+                }
+
                 botao.classList.add('botaoChamar')
                 botao.type = "button"
-                botao.value = "CHAMAR"
+                botao.value = "Exportar"
                 botao.style = "color: #fff;border-radius: 5px; margin: 5px; padding: 5px 15px;  font-family: 'Arial', sans-serif;  font-weight: 500;  cursor: pointer;box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),   7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1); outline: none;background: rgb(96,9,240); border: none;"
                 celula.appendChild(botao)
-                celula2.appendChild(textConsultorio)
                 item.appendChild(celula)
-                item.appendChild(celula2)
 
             })
         }

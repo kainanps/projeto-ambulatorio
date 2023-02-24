@@ -1,13 +1,14 @@
 <?php
-session_start();
 require_once "connection.php";
 try {    
-    $query = "SELECT * FROM chamados ORDER BY id DESC LIMIT 1";
+    $query = "SELECT * FROM chamados WHERE data = :valor";
     $stmt = $db->prepare($query);
-    $stmt->execute();
+    $stmt->execute([
+        ':valor' => date("Y-m-d")
+    ]);
 
     // Fetching the result
-    $paciente = $stmt->fetch();
+    $paciente = $stmt->fetchAll();
 
     echo json_encode($paciente);
 
